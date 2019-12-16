@@ -6,10 +6,10 @@
 ; RUN CONTROL
 ;----------------------------------------------------
 define      = -DPOSRES_R
-integrator   = md            ; stochastic leap-frog integrator
-nsteps       = 1000000       ; 1 * 4,000,000 fs = 4 ns
-dt           = 0.001         ; 1 fs
-nstcomm      = 10           ; frequency for center of mass motion removal
+integrator   = md            
+nsteps       = 1000000       
+dt           = 0.001         
+nstcomm      = 10          
 
 ;----------------------------------------------------
 ; OUTPUT CONTROL
