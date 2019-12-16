@@ -6,9 +6,9 @@
 ; RUN CONTROL
 ;----------------------------------------------------
 define      = -DPOSRES_R
-integrator              = md        ; leap-frog integrator
-nsteps                  = 250000   ; 2 * 5000000 = 10000 ps (10 ns)
-dt                      = 0.002     ; 2 fs
+integrator              = md        
+nsteps                  = 250000  
+dt                      = 0.002     
 comm-mode    = Linear        ; remove center of mass translation
 nstcomm      = 10           ; frequency for center of mass motion removal
 tinit       = 0
@@ -84,8 +84,8 @@ gen_vel                 = no        ; continuing from NPT equilibration
 pull                    = yes
 pull_ncoords            = 1         ; only one reaction coordinate
 pull_ngroups            = 2         ; two groups defining one reaction coordinate
-pull_group1_name        = Chain_L
-pull_group2_name        = Chain_R
+pull_group1_name        = chB
+pull_group2_name        = chA
 pull_coord1_type        = umbrella  ; harmonic potential
 pull_coord1_geometry    = distance  ; simple distance increase
 pull_coord1_dim         = Y N N
