@@ -24,7 +24,7 @@ $gmx mdrun -deffnm em_3
 gmx grompp -f $files/npt.mdp -c em_3.gro -p topol.top -r em_3.gro -o npt.tpr
 gmx mdrun -deffnm npt
 #Defining custom index groups
-echo -e "chain A\nchain B\nq"|$gmx make_ndx -f npt.tpr -n index.ndx
+echo -e "chain A\nchain B\nq"|$gmx make_ndx -f npt.tpr 
 #Pulling simulation
 $gmx grompp -f $files/md_pull.mdp -c npt.gro -p topol.top -r npt.gro -n index.ndx -t npt.cpt -o pull.tpr
 $gmx mdrun -deffnm pull -pf pullf.xvg -px pullx.xvg
