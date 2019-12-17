@@ -32,7 +32,7 @@ $gmx mdrun -deffnm pull -pf pullf.xvg -px pullx.xvg
 echo 0 | $gmx trjconv -s pull.tpr -f pull.xtc -o conf.gro -sep
 #Measuring the COM distance between the two groups
 for ps in `seq 1 500`;do 
-$gmx distance -s pull.tpr -f conf${ps}.gro -n index.ndx -select 'com of group "Chain_L" plus com of group "Chain_R"' -oall dist${ps}.xvg 
+$gmx distance -s pull.tpr -f conf${ps}.gro -n index.ndx -select 'com of group "chB" plus com of group "chA"' -oall dist${ps}.xvg 
 d=`tail -n 1 dist${ps}.xvg | awk '{print $2}'`
 echo "${ps} ${d}" >> distances.dat
 rm dist${ps}.xvg
