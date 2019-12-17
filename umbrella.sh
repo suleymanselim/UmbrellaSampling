@@ -63,7 +63,7 @@ $gmx grompp -f $files/npt_umbrella.mdp -c $files/umb${ii}.gro -p topol.top -r $f
 $gmx mdrun -deffnm npt${ii}
 $gmx grompp -f $files/md_umbrella.mdp -c npt${ii}.gro -t npt${ii}.cpt -p topol.top -r npt${ii}.gro -n index.ndx -o umbrella${ii}.tpr
 $gmx mdrun -deffnm umbrella${ii}
-cat "umbrella${ii}.tpr" >> tpr-files.dat
-cat "umbrella${ii}_pullf.xvg" >> pullf-files.dat
+echo "umbrella${ii}.tpr" >> tpr-files.dat
+echo "umbrella${ii}_pullf.xvg" >> pullf-files.dat
 done
 $gmx wham -it tpr-files.dat -if pullf-files.dat -o -hist -unit kCal
