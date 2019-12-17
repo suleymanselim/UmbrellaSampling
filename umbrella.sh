@@ -14,11 +14,11 @@ echo SOL|$gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname 
 sed -i "s/POSRES/POSRES_R/g" topol_Protein_chain_R.itp
 sed -i "s/POSRES/POSRES_L/g" topol_Protein_chain_L.itp
 #Energy Minimization
-$gmx grompp -f $files/em_1.mdp -c solv_ions.gro -p topol.top -o em.tpr #position restrain for all heavy atoms
+$gmx grompp -f $files/em_1.mdp -c solv_ions.gro -p topol.top -r solv_ions.gro -o em_1.tpr #position restrain for all heavy atoms
 $gmx mdrun -deffnm em_1
-$gmx grompp -f $files/em_2.mdp -c solv_ions.gro -p topol.top -o em.tpr #position restrain for all heavy atoms of receptor and ligand
+$gmx grompp -f $files/em_2.mdp -c em_1.gro -p topol.top -r em_1.gro -o em_2.tpr #position restrain for all heavy atoms of receptor and ligand
 $gmx mdrun -deffnm em_2
-$gmx grompp -f $files/em_3.mdp -c solv_ions.gro -p topol.top -o em.tpr 
+$gmx grompp -f $files/em_3.mdp -c em_2.gro -p topol.top -r em_2.gro -o em_3.tpr 
 $gmx mdrun -deffnm em_3
 #NPT equilibration
 gmx grompp -f $files/npt.mdp -c em_3.gro -p topol.top -r em_3.gro -o npt.tpr
