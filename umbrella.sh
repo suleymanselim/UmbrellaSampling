@@ -5,7 +5,7 @@ export files=~/files                            #Directory containing input file
 #Generating a molecular topology for an umbrella sampling simulation
 echo 1|$gmx pdb2gmx -f $files/complex.pdb -o complex.gro -water tip3p 
 #Defining the box
-$gmx editconf -f complex.gro -o newbox.gro -center 2.5 3 3 -box 15 6 6
+$gmx editconf -f complex.gro -o newbox.gro -center 2.5 3 3 -box 13 6 6
 #Adding Solvent and Ions
 $gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
 $gmx grompp -f $files/ions.mdp -c solv.gro -p topol.top -o ions.tpr
@@ -66,4 +66,5 @@ $gmx mdrun -deffnm umbrella${ii}
 echo "umbrella${ii}.tpr" >> tpr-files.dat
 echo "umbrella${ii}_pullf.xvg" >> pullf-files.dat
 done
+wait
 $gmx wham -it tpr-files.dat -if pullf-files.dat -o -hist -unit kCal
