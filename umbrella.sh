@@ -55,7 +55,7 @@ grep $aa distances.dat |head -n1 >> list
 done
 #renaming input frames and deleting unnecessary frames
 aa=1
-awk '!a[$0]++' list|while read i;do num=`echo $i|awk '{print $1}'`;mv conf${num}.gro $files/umb${aa}.gro;aa=`expr $aa+ 1`;done
+awk '!a[$0]++' list|while read i;do num=`echo $i|awk '{print $1}'`;mv conf${num}.gro $files/umb${aa}.gro;aa=`expr $aa + 1`;done
 rm conf*
 #Umbrella Sampling Simulations
 for ii in $(seq 1 `awk '!a[$0]++' list |wc -l`);do
