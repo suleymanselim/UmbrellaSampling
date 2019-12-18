@@ -38,7 +38,7 @@ echo "${ps} ${d}" >> distances.dat
 rm dist${ps}.xvg
 done
 space=0.2 #Define the spacing of the windows
-range=`cat distances.dat| awk '{if(min==""){min=max=$2}; if($2>max) {max=$2}; if($2<min) {min=$2}; total+=$2; count+=1} END {print min" $space "max}'`
+range=`cat distances.dat| awk '{if(min==""){min=max=$2}; if($2>max) {max=$2}; if($2<min) {min=$2}; total+=$2; count+=1} END {print min" "sp" "max}' sp="$space"`
 #Selecting frames for umbrella sampling input
 for xx in `seq -f "%f" ${range}`;do 
 aa=`awk -v c=2 -v t=${xx} '{a[NR]=$c}END{
